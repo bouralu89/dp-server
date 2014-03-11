@@ -30,8 +30,6 @@ exports.getAllByUserId = function(req, res) {
                     date: {
                         $lt: req.query.from
                     }
-                }, {
-                    'comments': 0
                 })
                 .limit(5)
                 .sort({
@@ -44,7 +42,10 @@ exports.getAllByUserId = function(req, res) {
                         console.log(err, msgs);
                         res.send(409, null);
                     } else {
-                        res.send(200, msgs);
+                        getCommentsCount(msgs, function(messages) {
+                            console.log(messages);
+                            res.send(200, messages);
+                        });
                     };
                 });
         });
@@ -67,8 +68,6 @@ exports.getNewByUserId = function(req, res) {
                     date: {
                         $gt: req.query.date
                     }
-                }, {
-                    'comments': 0
                 })
                 .sort({
                     'date': -1
@@ -79,7 +78,10 @@ exports.getNewByUserId = function(req, res) {
                     if (err) {
                         res.send(409, null);
                     } else {
-                        res.send(200, msgs);
+                        getCommentsCount(msgs, function(messages) {
+                            console.log(messages);
+                            res.send(200, messages);
+                        });
                     };
                 });
         });
@@ -89,8 +91,6 @@ exports.getAllByTeamId = function(req, res) {
     Message
         .find({
             team: req.params.id
-        }, {
-            'comments': 0
         })
         .sort({
             'date': -1
@@ -101,7 +101,21 @@ exports.getAllByTeamId = function(req, res) {
             if (err) {
                 res.send(409, null);
             } else {
-                res.send(200, msgs);
+                getCommentsCount(msgs, function(messages) {
+                    console.log(messages);
+                    res.send(200, messages);
+                });
             };
         });
+};
+
+function getCommentsCount(msgs, cb) {
+    var messages = [];
+    msgs.forEach(function(msg) {
+        var m = msg.toObject();
+        m.commentcount = m.comments.length;
+        delete m.comments;
+        messages.push(m);
+    });
+    cb(messages);
 };

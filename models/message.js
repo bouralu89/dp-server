@@ -29,8 +29,4 @@ var messageSchema = new Schema({
     }]
 });
 
-messageSchema.methods.getCommentsCount = function(){
-    return this.comments.length;
-};
-
 mongoose.model('Message', messageSchema);

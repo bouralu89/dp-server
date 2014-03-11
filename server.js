@@ -10,11 +10,8 @@ var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/diplomka';
 //connect to database
 mongoose.connect(mongoUrl);
 
-// Bootstrap models
-var models_path = __dirname + '/models'
-fs.readdirSync(models_path).forEach(function(file) {
-    if (~file.indexOf('.js')) require(models_path + '/' + file)
-});
+//Bootstrap model
+require('./models/model').initialize();
 
 //passport config
 require('./config/passport')(passport);
