@@ -1,11 +1,12 @@
 var express = require('express'),
     passport = require('passport'),
     mongoose = require('mongoose'),
-    fs = require('fs');
+    fs = require('fs'),
+    config = require('./config/config');
 
 var app = express();
 
-var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/diplomka';
+var mongoUrl = process.env.MONGOLAB_URI || config.db;
 
 //connect to database
 mongoose.connect(mongoUrl);
