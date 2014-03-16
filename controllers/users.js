@@ -122,8 +122,6 @@ exports.update = function(req, res) {
     };
 
 };
-exports.search
-
 
 exports.getByTeam = function(req, res) {
     Team
