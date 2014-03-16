@@ -1,8 +1,6 @@
-var async = require('async');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Team = mongoose.model('Team');
-
 
 exports.checkLogin = function(req, res){
     if (req.user) {
@@ -12,6 +10,7 @@ exports.checkLogin = function(req, res){
     };
     
 };
+
 exports.login = function(req, res) {
     User.findOne({
         username: req.body.username
