@@ -1,7 +1,6 @@
 var express = require('express'),
     passport = require('passport'),
     mongoose = require('mongoose'),
-    fs = require('fs'),
     config = require('./config/config');
 
 var app = express();
