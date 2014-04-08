@@ -8,7 +8,6 @@ exports.checkLogin = function(req, res){
     } else {
         res.send(401);
     };
-    
 };
 
 exports.login = function(req, res) {
