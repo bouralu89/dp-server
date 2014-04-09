@@ -66,7 +66,7 @@ exports.getNewByUserId = function(req, res) {
                         $in: teams
                     },
                     date: {
-                        $gt: req.query.date
+                        $gt: req.query.from
                     }
                 })
                 .sort({
