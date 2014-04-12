@@ -22,4 +22,8 @@ require('./config/express')(app, passport);
 require('./config/routes')(passport, app);
 
 //start app
-app.listen(process.env.PORT || 3000);
+var port = process.env.PORT || 3000;
+
+app.listen(port);
+
+console.log('Server running at port %s in %s mode.', port, app.settings.env);
