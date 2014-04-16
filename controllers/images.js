@@ -23,7 +23,6 @@ exports.getTeamImg = function(req, res) {
         filename: "team_" + req.params.id
     });
     readstream.on('error', function(err) {
-        //console.log('An error occurred!', err);
         fs.createReadStream('res/teamImg.png').pipe(res);
     });
 
@@ -35,13 +34,10 @@ exports.getUserImg = function(req, res) {
         filename: "user_" + req.params.id
     });
     readstream.on('error', function(err) {
-        //console.log('An error occurred!', err);
         fs.createReadStream('res/userImg2.png').pipe(res);
     });
 
     readstream.pipe(res);
-
-    //fs.createReadStream('res/userImg.png').pipe(res);
 };
 
 exports.createTeamImg = function(req, res) {
@@ -56,7 +52,6 @@ exports.createTeamImg = function(req, res) {
                 filename: "team_" + req.params.id
             }, function(err) {
                 if (err) {
-                    console.log('file doesnt exist or some error', err);
                     res.send(500);
                 } else {
                     var writestream = gfs.createWriteStream({
@@ -64,12 +59,13 @@ exports.createTeamImg = function(req, res) {
                         content_type: type
                     });
                     fs.createReadStream(tmp_path).pipe(writestream);
-                    res.send(200);
+                    fs.unlink(tmp_path, function() {
+                        res.send(200);
+                    });
                 };
             });
-
         } else {
-            res.send(409);
+            res.send(500);
         }
     });
 };
@@ -84,7 +80,6 @@ exports.createUserImg = function(req, res) {
                 filename: "user_" + req.params.id
             }, function(err) {
                 if (err) {
-                    console.log('file doesnt exist or some error', err);
                     res.send(500);
                 } else {
                     var writestream = gfs.createWriteStream({
@@ -92,12 +87,14 @@ exports.createUserImg = function(req, res) {
                         content_type: type
                     });
                     fs.createReadStream(tmp_path).pipe(writestream);
-                    res.send(200);
+                    fs.unlink(tmp_path, function() {
+                        res.send(200);
+                    });
                 };
             });
 
         } else {
-            res.send(409);
+            res.send(500);
         }
     });
 };

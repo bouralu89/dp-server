@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
         keepExtensions: true
     }));
     app.use(multer({
-        dest: '../uploads/'
+        dest: './upload/'
     }));
     app.use(methodOverride());
     //app.set('views', __dirname + '/../app');

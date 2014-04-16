@@ -38,7 +38,7 @@ exports.get = function(req, res) {
         .findOne({
             '_id': req.params.id
         })
-        .populate('team', 'name')
+        .populate('team', 'name _id')
         .exec(function(err, task) {
             if (!err) {
                 res.send(task);

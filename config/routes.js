@@ -16,9 +16,9 @@ module.exports = function(passport, app) {
     //                                    AppRoutes 
     // ----------------------------------------------------------------------------------------------
 
-    app.get('/app', function(req, res) {
+    /*app.get('/app', function(req, res) {
         res.render('index.html');
-    });
+    });*/
 
     // ----------------------------------------------------------------------------------------------
     //                                    MessagesRoutes 

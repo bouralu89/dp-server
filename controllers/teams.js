@@ -56,7 +56,7 @@ exports.getAllByUser = function(req, res) {
         }, {
             'password': 0
         })
-        .populate('manager', 'first_name surname username')
+        .populate('manager', 'firstName lastName username')
         .exec(function(err, teams) {
             if (teams) {
                 res.send(teams);
@@ -102,7 +102,7 @@ exports.getOne = function(req, res) {
         }, {
             'password': 0
         })
-        .populate('manager', 'first_name surname')
+        .populate('manager', 'firstName lastName')
         .exec(function(err, team) {
             if (!err) {
                 team.taskCount(function(err, result) {

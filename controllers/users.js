@@ -31,8 +31,8 @@ exports.login = function(req, res) {
             } else {
                 res.json({
                     _id: user._id,
-                    first_name: user.first_name,
-                    surname: user.surname,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
                     username: user.username,
                     email: user.email,
                     phoneNumber: user.phoneNumber
@@ -87,8 +87,8 @@ exports.update = function(req, res) {
             _id: req.params.id
         }, {
             $set: {
-                first_name: user.first_name,
-                surname: user.surname,
+                firstName: user.firstName,
+                lastName: user.lastName,
                 password: user.password,
                 phoneNumber: user.phoneNumber,
                 email: user.email
@@ -105,8 +105,8 @@ exports.update = function(req, res) {
             _id: req.params.id
         }, {
             $set: {
-                first_name: user.first_name,
-                surname: user.surname,
+                firstName: user.firstName,
+                lastName: user.lastName,
                 phoneNumber: user.phoneNumber,
                 email: user.email
             }
@@ -126,7 +126,7 @@ exports.getByTeam = function(req, res) {
         .findOne({
             '_id': req.params.id
         })
-        .populate('users', 'first_name surname username')
+        .populate('users', 'firstName lastName username')
         .exec(function(err, team) {
             if (!err) {
                 res.json(team.users);

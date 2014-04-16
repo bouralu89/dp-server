@@ -8,7 +8,7 @@ exports.getComments = function(req, res) {
         .findOne({
             '_id': id
         })
-        .populate('comments.user', 'first_name surname username')
+        .populate('comments.user', 'firstName lastName username')
         .exec(function(err, msg) {
             if (!err) {
             	var sorted = _.sortBy(msg.comments, function(c){ c.date }).reverse();

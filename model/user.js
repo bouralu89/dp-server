@@ -4,8 +4,8 @@ var async = require('async');
 var Team = mongoose.model('Team');
 
 var userSchema = new Schema({
-    first_name: String,
-    surname: String,
+    firstName: String,
+    lastName: String,
     username: {
         type: String,
         unique: true,

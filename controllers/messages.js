@@ -35,7 +35,7 @@ exports.getAllByUserId = function(req, res) {
                 .sort({
                     'date': -1
                 })
-                .populate('user', 'first_name surname')
+                .populate('user', 'firstName lastName')
                 .populate('team', 'name')
                 .exec(function(err, msgs) {
                     if (err) {
@@ -72,7 +72,7 @@ exports.getNewByUserId = function(req, res) {
                 .sort({
                     'date': -1
                 })
-                .populate('user', 'first_name surname')
+                .populate('user', 'firstName lastName')
                 .populate('team', 'name')
                 .exec(function(err, msgs) {
                     if (err) {
@@ -95,14 +95,13 @@ exports.getAllByTeamId = function(req, res) {
         .sort({
             'date': -1
         })
-        .populate('user', 'first_name surname')
+        .populate('user', 'firstName lastName')
         .populate('team', 'name')
         .exec(function(err, msgs) {
             if (err) {
                 res.send(409, null);
             } else {
                 getCommentsCount(msgs, function(messages) {
-                    console.log(messages);
                     res.send(200, messages);
                 });
             };
