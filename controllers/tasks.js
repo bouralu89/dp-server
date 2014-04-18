@@ -16,6 +16,7 @@ exports.create = function(req, res) {
 
 exports.update = function(req, res) {
     var task = req.body;
+    console.log(task);
     Task.update({
         _id: req.params.id
     }, {
@@ -28,6 +29,7 @@ exports.update = function(req, res) {
         if (!err) {
             res.send(201);
         } else {
+            console.log(err);
             res.send(409);
         };
     });
@@ -93,6 +95,7 @@ exports.getArchiveByTeam = function(req, res) {
             endDate: 1
         })
         .exec(function(err, tasks) {
+            console.log(tasks);
             if (!err) {
                 res.send(tasks);
             } else {

@@ -24,8 +24,8 @@ module.exports = function(app, passport) {
         dest: './upload/'
     }));
     app.use(methodOverride());
-    //app.set('views', __dirname + '/../app');
-    //app.engine('html', require('ejs').renderFile);
+    app.set('views', __dirname + '/../app');
+    app.engine('html', require('ejs').renderFile);
     app.use(express.static(__dirname + '/../app'));
 
     var env = process.env.NODE_ENV || 'development';
