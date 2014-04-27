@@ -1,7 +1,7 @@
 dp-server
 ==========================
 
-This is a node.js application build as a server part of my diploma thesis.
+This is a node.js application build as a part of my diploma thesis.
 
 ## Requires
 
